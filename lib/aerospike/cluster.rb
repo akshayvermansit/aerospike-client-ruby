@@ -215,8 +215,10 @@ module Aerospike
     def launch_tend_thread
       @tend_thread = Thread.new do
         Thread.current.abort_on_exception = false
+        print "Thread started"
         loop do
           begin
+            print "cluster status check"
             tend
             sleep(@tend_interval / 1000.0)
           rescue => e
